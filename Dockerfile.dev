@@ -1,0 +1,18 @@
+ARG SDK_ARCH=x86-64
+ARG SDK_VERSION=24.10.5
+FROM ghcr.io/openwrt/rootfs:${SDK_ARCH}-${SDK_VERSION}
+
+ARG PKG_DEPENDS
+
+# 1. Update package lists
+# 2. Install dependencies from project.mk
+# 3. Install inotifywait for the watcher
+RUN mkdir -p /var/lock && \
+  opkg update && \
+  opkg install \
+  $(echo $PKG_DEPENDS) \
+  ucode-mod-math
+
+# Set the working directory to /app
+WORKDIR /app
+CMD ["/bin/sh"]

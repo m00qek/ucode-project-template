@@ -1,0 +1,11 @@
+# Build artifacts
+bin/
+.include/
+
+# Docker
+.docker_id
+
+# System / IDE
+.DS_Store
+.vscode/
+.idea/
